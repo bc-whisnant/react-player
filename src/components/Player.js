@@ -52,18 +52,24 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     currentTime: 0,
     duration: 0,
   });
+
+  const autoPlayHandler = () => {
+    if (isPlaying) {
+      audioRef.current.play()
+    }
+  }
   return (
     <div className='player'>
       <div className='time-control'>
         <p>{getTime(songInfo.currentTime)}</p>
         <input
           min={0}
-          max={songInfo.duration}
+          max={songInfo.duration || 0}
           value={songInfo.currentTime}
           onChange={dragHandler}
           type='range'
         />
-        <p>{getTime(songInfo.duration)}</p>
+        <p>{getTime(songInfo.duration) || 0}</p>
       </div>
       <div className='play-control'>
         <FontAwesomeIcon className='skip-back' size='2x' icon={faAngleLeft} />
@@ -81,6 +87,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       </div>
       {/* onloadedmetadata is used here so we can update the times when the page loads */}
       <audio
+        onLoadedData={ autoPlayHandler }
         onTimeUpdate={timeUpdateHandler}
         onLoadedMetadata={timeUpdateHandler}
         ref={audioRef}
