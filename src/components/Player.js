@@ -28,7 +28,7 @@ const Player = ({ songs, setCurrentSong, currentSong, isPlaying, setIsPlaying, s
     })
     setSongs(newSongs)
     
-  }, [currentSong])
+  })
 
   // event handlers
   const playSongHandler = () => {
