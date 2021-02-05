@@ -1,10 +1,16 @@
 import React from 'react';
 import LibrarySong from './LibrarySong';
 
-const Library = ({ songs, setCurrentSong, currentSong, setSongs, libraryStatus }) => {
+const Library = ({ songs, setCurrentSong, currentSong, setSongs, libraryStatus, setLibraryStatus }) => {
+  const toggleLibrary = () => {
+    setLibraryStatus(!libraryStatus)
+  }
+
   return (
     <div className={`library ${libraryStatus ? 'active-library' : ''}`} >
-      <h2>Library</h2>
+      <div className="library-menu">
+      <h2 onClick={toggleLibrary}>X</h2>
+      </div>
       <div className='library-songs'>
         {songs.map((song) => (
           <LibrarySong
