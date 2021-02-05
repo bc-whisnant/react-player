@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Player from './components/Player'
 import Song from './components/Song'
 import Library from './components/Library'
+import Nav from './components/Nav'
 // import styles
 import './styles/app.scss'
 // import data
@@ -15,11 +16,14 @@ function App() {
 
   const [isPlaying, setIsPlaying] = useState(false)
 
+  const [libraryStatus, setLibraryStatus] = useState(false)
+
   return (
     <div className="App">
+      <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus}  />
       <Song currentSong={currentSong} />
       <Player currentSong={ currentSong } isPlaying={ isPlaying } setIsPlaying={ setIsPlaying }/>
-      <Library songs={songs} setCurrentSong={ setCurrentSong } setSongs={setSongs} />
+      <Library songs={songs} setCurrentSong={ setCurrentSong } setSongs={setSongs} libraryStatus={libraryStatus} />
     </div>
   );
 }
